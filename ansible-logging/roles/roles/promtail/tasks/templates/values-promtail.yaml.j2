@@ -1,0 +1,4 @@
+config:
+  clients:
+    - url: "http://{{ loki_gateway_servie_ip }}:{{ loki_gateway_service_port }}/loki/api/v1/push"
+      tenant_id: {{ loki_tenant_id }}

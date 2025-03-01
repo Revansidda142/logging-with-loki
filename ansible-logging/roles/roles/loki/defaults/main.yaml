@@ -2,6 +2,6 @@ loki_enabled: false
 loki_chart_version: 6.24.0
 loki_s3_region: "us-east-1"
 loki_s3_insecure: true
-loki_namespace: loki
+loki_namespace: cloudlyte-logging
 loki_ruler_s3_bucket_name: "ruler"
 loki_chunks_s3_bucket_name: "chunks"

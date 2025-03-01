@@ -1,0 +1,22 @@
+- name: Deploy Loki and Promtail
+  hosts: kube_cluster
+  gather_facts: true
+
+  tasks:
+    - name: Include global variables
+      ansible.builtin.include_vars:
+        file: "{{ inventory_dir }}/group_vars/all.yaml"
+
+    - name: Include addon variables
+      ansible.builtin.include_vars:
+        file: "{{ addons_vars_file }}"
+
+    - name: Deploy Loki
+      ansible.builtin.include_role:
+        name: loki
+      when: loki_enabled
+
+    - name: Deploy Promtail
+      ansible.builtin.include_role:
+        name: promtail
+      when: promtail_enabled

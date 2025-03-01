@@ -1,7 +1,8 @@
-loki_enabled: true
-loki_s3_endpoint: "https://100.130.101.126:30361"
-loki_s3_access_key: "admin"
-loki_s3_secret_key: "tatacomm"
+loki_enabled: false
+loki_s3_endpoint: "<s3-endpoint>"
+loki_s3_access_key: "<access-key>"
+loki_s3_secret_key: "<secret-key>"
+#loki_chart_version:
 #loki_s3_region:
 #loki_s3_insecure:
 #loki_namespace:
@@ -13,8 +14,8 @@ loki_s3_secret_key: "tatacomm"
   #ingestion_burst_size_mb:
 
 promtail_enabled: false
-loki_gateway_servie_ip: 100.130.101.126
-loki_gateway_service_port: 31154
-loki_tenant_id: cluster-126
+loki_gateway_servie_ip: <gateway-service-ip>
+loki_gateway_service_port: <service-port-nodeport>
+loki_tenant_id: <tenant-id>
+#promatail_chart_version:
 #promtail_namespace:
- 

@@ -1,0 +1,9 @@
+---
+- name: Install Helm (if not already installed)
+  import_tasks: install_helm.yaml
+
+- name: Configure Promtail
+  import_tasks: configure_promtail.yaml
+
+- name: Deploy Promtail
+  import_tasks: deploy_promtail.yaml
