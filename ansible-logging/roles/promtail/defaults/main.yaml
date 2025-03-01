@@ -1,0 +1,2 @@
+promtail_enabled: false
+promtail_namespace: "cloudlyte-logging"

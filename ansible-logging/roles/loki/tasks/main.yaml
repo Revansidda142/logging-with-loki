@@ -1,0 +1,9 @@
+---
+- name: Install Helm (if not already installed)
+  import_tasks: install_helm.yaml
+
+- name: Configure Loki
+  import_tasks: configure_loki.yaml
+
+- name: Deploy Loki
+  import_tasks: deploy_loki.yaml

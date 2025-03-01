@@ -1,0 +1,30 @@
+- name: Validate promtail inputs
+  set_fact:
+    missing_vars: >-
+      {%- set missing = [] -%}
+      {%- if loki_gateway_servie_ip is not defined or not loki_gateway_servie_ip -%}
+        {{ missing.append('loki_gateway_servie_ip') }}
+      {%- endif -%}
+      {%- if loki_gateway_service_port is not defined or not loki_gateway_service_port -%}
+        {{ missing.append('loki_gateway_service_port') }}
+      {%- endif -%}
+      {%- if loki_tenant_id is not defined or not loki_tenant_id -%}
+        {{ missing.append('loki_tenant_id') }}
+      {%- endif -%}
+      {{ missing }}
+
+- name: Fail if any of the Promtail variables are not set
+  fail:
+    msg: "ERROR: The following required variables are missing: {{ missing_vars | join(', ') }}"
+  when: missing_vars | length > 0
+
+
+- name: Install promtail with helm
+  kubernetes.core.helm:
+    name: promtail
+    chart_ref: grafana/promtail
+    release_namespace: "{{ promtail_namespace }}"
+    create_namespace: true
+    values_files:
+      - /tmp/promtail-values.yaml
+    state: present

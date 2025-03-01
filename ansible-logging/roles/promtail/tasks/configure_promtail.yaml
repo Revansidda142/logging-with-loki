@@ -1,0 +1,4 @@
+- name: Generate Loki values file
+  template:
+    src: values-promtail.yaml.j2
+    dest: /tmp/promtail-values.yaml

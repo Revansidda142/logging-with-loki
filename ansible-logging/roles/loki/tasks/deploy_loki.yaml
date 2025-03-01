@@ -1,0 +1,29 @@
+- name: Validate required Loki variables
+  set_fact:
+    missing_vars: >-
+      {%- set missing = [] -%}
+      {%- if loki_s3_endpoint is not defined or not loki_s3_endpoint -%}
+        {{ missing.append('loki_s3_endpoint') }}
+      {%- endif -%}
+      {%- if loki_s3_access_key is not defined or not loki_s3_access_key -%}
+        {{ missing.append('loki_s3_access_key') }}
+      {%- endif -%}
+      {%- if loki_s3_secret_key is not defined or not loki_s3_secret_key -%}
+        {{ missing.append('loki_s3_secret_key') }}
+      {%- endif -%}
+      {{ missing }}
+
+- name: Fail if any required Loki variables are missing
+  fail:
+    msg: "ERROR: The following required variables are missing: {{ missing_vars | join(', ') }}"
+  when: missing_vars | length > 0
+
+- name: Install Loki with Helm
+  kubernetes.core.helm:
+    name: loki
+    chart_ref: grafana/loki
+    release_namespace: "{{ loki_namespace }}"
+    create_namespace: true
+    values_files:
+      - /tmp/loki-values.yaml
+    state: present

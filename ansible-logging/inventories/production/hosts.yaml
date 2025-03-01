@@ -1,0 +1,10 @@
+all:
+  children:
+    kube_cluster:
+      hosts:
+        kube-master:
+          ansible_host: 100.130.101.126
+          ansible_user: root
+    addons:
+      hosts:
+        kube-master:
