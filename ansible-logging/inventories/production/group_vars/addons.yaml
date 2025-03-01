@@ -14,8 +14,8 @@ loki_s3_secret_key: "<secret-key>"
   #ingestion_burst_size_mb:
 
 promtail_enabled: false
-loki_gateway_servie_ip: <gateway-service-ip>
-loki_gateway_service_port: <service-port-nodeport>
+loki_gateway_servie_ip: loki-gateway.cloudlyte-logging.svc.cluster.local
+loki_gateway_service_port: 80
 loki_tenant_id: <tenant-id>
 #promatail_chart_version:
 #promtail_namespace:
